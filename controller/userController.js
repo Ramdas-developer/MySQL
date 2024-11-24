@@ -5,12 +5,9 @@ const createUser = async (req, res) => {
     const { firstName, lastName } = req.body;
     console.log("req.body :", req.body);
     const newUser = await User.create({ firstName, lastName });
-    res.status(200).json({
-      success: true,
-      message: "New user create successfully",
-      data: newUser,
-    });
+    res.status(200).json({success: true,message: "New user create successfully",data: newUser,});
     console.log("new User:",newUser)
+
   } catch (error) {
     console.log("New user not created", error);
     res.status(400).json({
@@ -30,11 +27,7 @@ const getUser = async (req, res) => {
     console.log("User get successfully :", details);
   } catch (error) {
     console.log("User are not found", error);
-    res.status(400).json({
-      success: true,
-      message: " Users are not found",
-      error: error.message,
-    });
+    res.status(400).json({success: true, message: " Users are not found", error: error.message});
   }
 };
 
@@ -46,17 +39,12 @@ const updateUser = async (req, res) => {
     const user = await User.findByPk(id);
     console.log("user :", user);
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "user not found" });
+      return res.status(404).json({ success: false, message: "user not found" });
     }
 
     await user.update({ firstName, lastName });
-    res.status(200).json({
-      success: true,
-      message: "User updated successfully",
-      UpdatedUser: user,
-    });
+    res.status(200).json({success: true,message: "User updated successfully",UpdatedUser: user});
+    
   } catch (error) {
     console.log("User fetching error:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

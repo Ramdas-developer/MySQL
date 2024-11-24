@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute");
+const contactRoute = require("./routes/contactRoute");
 
 require('./models');
 require('dotenv').config();
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(bodyParser.json());
 
 app.use('/user',userRoute)
+app.use('/contact',contactRoute)
 app.get('/',function(req,res){
     res.send('hello world')
 })
